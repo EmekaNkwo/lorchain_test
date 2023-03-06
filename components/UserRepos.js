@@ -36,7 +36,7 @@ const UserRepos = ({ repoData }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <div className="flex flex-col gap-2 bg-white p-2 rounded-md lg:w-[400px] w-full">
+                    <div className="flex flex-col gap-2 bg-white p-3 rounded-md lg:w-[500px] w-full h-[110px] hover:border-[#0064EB] border-[1.5px]">
                       <div className="flex items-center gap-2 ">
                         <GoRepo />
                         <h3 className="text-[24px] font-medium text-[#0064EB]">
@@ -68,7 +68,10 @@ const UserRepos = ({ repoData }) => {
               />
             </>
           ) : (
-            <p>No available repositories!</p>
+            <div className="flex flex-col gap-2 items-center justify-center h-[calc(100vh-72px)]">
+              <GoRepo className="text-[24px]" />
+              <p>Repository List is Empty!</p>
+            </div>
           )}
         </div>
       </div>

@@ -10,7 +10,7 @@ const UserInfo = ({ username }) => {
   const [userData, setUserData] = useState();
 
   const [repos, setRepos] = useState(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState({ active: false, type: 200 });
   const [cancelToken, setCancelToken] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -55,7 +55,7 @@ const UserInfo = ({ username }) => {
 
     try {
       const response = await axios.get(
-        `https://api.github.com/users/${username}/repos`,
+        `https://api.github.com/users/${username}/repos?per_page=100`,
         {
           cancelToken: source.token,
         }
@@ -94,10 +94,10 @@ const UserInfo = ({ username }) => {
 
   return (
     <main>
-      {error !== null ? (
+      {error && error.active ? (
         <ErrorPage error={error} />
       ) : (
-        <div className="flex gap-2 p-2 mt-2  justify-center flex-col items-center lg:flex-row lg:items-start ">
+        <div className="flex gap-4 p-2 mt-[3rem] justify-center flex-col items-center lg:flex-row lg:items-start ">
           {loading ? (
             <>
               <Spinner />
